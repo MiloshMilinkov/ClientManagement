@@ -4,6 +4,8 @@ using Microsoft.OpenApi.Writers;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Infrastructure.Migrations;
+using Core.Interfaces;
+using Infrastructure.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
 
 builder.Services.AddDbContext<AppDBContext>(options =>{
         options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
