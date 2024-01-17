@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace API.Controllers
 {
-    [Route("[employees]")]
+    [Route("[controller]")]
     [ApiController]
     public class EmployeesController : Controller
     {
@@ -23,6 +23,15 @@ namespace API.Controllers
         public async Task<ActionResult<Employee>> GetEmployees(){
             var employees = await _employeeRepository.GetEmployees();
             return Ok(employees);
+        }
+
+        [HttpGet("{EmployeeId}")]
+        public async Task<ActionResult<Employee>> GetEmployeeById(int EmployeeId){
+            var employee = await _employeeRepository.GetEmployeeById(EmployeeId);
+            if(employee == null){
+                return NotFound();
+            }
+            return Ok(employee);
         }
     }
 }

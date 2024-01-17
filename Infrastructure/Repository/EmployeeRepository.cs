@@ -19,5 +19,8 @@ namespace Infrastructure.Repository
         {
             return await _appDBContext.Employees.ToListAsync();
         }
+        public async Task<Employee> GetEmployeeById(int EmployeeId){
+            return await _appDBContext.Employees.FirstOrDefaultAsync(e => e.EmployeeId == EmployeeId);
+        }
     }
 }

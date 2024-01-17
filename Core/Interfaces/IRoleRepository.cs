@@ -6,8 +6,8 @@ using Core.Entities;
 
 namespace Core.Interfaces
 {
-    public interface IEmployeeRepository
+    public interface IRoleRepository
     {
-        Task<IReadOnlyList<Employee>> GetEmployees();
+        Task<IReadOnlyList<Role>> GetRoles();
     }
 }
